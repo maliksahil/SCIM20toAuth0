@@ -1,24 +1,30 @@
-{
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
-  "id": "2819c223-7f76-453a-919d-413861904646",
-  "userName": "bjensen@example.com",
-  "emails": [
-    {
-      "value": "bjensen@example.com",
-      "type": "work",
-      "primary": true
+  {
+    "schemas": [
+      "urn:ietf:params:scim:schemas:core:2.0:User",
+      "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
+    ],
+    "id": "auth0|id",
+    "externalId": "testuser@testdomain.com",
+    "userName": "testuser@testdomain.com",
+    "name": {},
+    "emails": [
+      {
+        "value": "testuser@testdomain.com",
+        "primary": true
+      }
+    ],
+    "photos": [
+      {
+        "value": "https://picture",
+        "type": "photo"
+      }
+    ],
+    "meta": {
+      "resourceType": "User",
+      "created": "2018-05-02T03:45:02.111Z",
+      "lastModified": "2018-05-02T03:45:02.111Z"
     },
-    {
-      "value": "babs@jensen.org",
-      "type": "home"
+    "urn:ietf:params:scim:schemas:extension:auth0:2.0:User": {
+      "connectionName": "Username-Password-Authentication"
     }
-  ],
-  "meta": {
-    "resourceType": "User",
-    "created": "2010-01-23T04:56:22Z",
-    "lastModified": "2011-05-13T04:42:34Z",
-    "version": "W\/\"3694e05e9dff590\"",
-    "location":
-     "https://example.com/v2/Users/2819c223-7f76-453a-919d-413861904646"
   }
-}

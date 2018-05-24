@@ -12,9 +12,10 @@ var auth0Client = new Auth0ManagementClient({
 });
 ````
 How do I get a management API token? https://auth0.com/docs/api/management/v2/tokens
+
 1. Run `npm i`
 2. Run `node server`
-3. Make your requests to `http://localhost:8080/scim/*`, the only method currently implemented is /users, so you can make a call to `http:///localhost:8080/scim/users`
+3. Make your requests to `http://localhost:8080/scim/*`, the only method currently implemented is /users and /users:userid, so you can make a call to `http:///localhost:8080/scim/users`
 
 ### Example call
 ```
