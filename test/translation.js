@@ -31,34 +31,15 @@ describe('Schema translation', () => {
 
         // load a scim user (this one specifies things like password)
         const scimUser = require('../fixtures/scim-user-to-create-in-auth0.json');
+        const auth0User = require('../fixtures/auth0-user-to-be-created.json');
         
         return Translate.toAuth0(scimUser, (error, json) => {
-
-            console.log(json);
-
-            //expect(error).to.not.exist();
-            //expect(json).to.be.an.object();
-            
-       //     done();
-        });
-    });
- /*   
-    it('SCIM --> Auth0 --> SCIM', done => {
-        const scimUser = require('../fixtures/scim-user.json');
-        
-        return Translate.toAuth0(scimUser, (error, auth0User) => {
             expect(error).to.not.exist();
-            expect(auth0User).to.be.an.object();
-            
-            return Translate.toAuth0(auth0User, (error, newScimUser) => {
-                expect(error).to.not.exist();
-                expect(scimUser).to.equal(newScimUser);
-                
-      //          done();
-            });
+            expect(json).to.be.an.object();
+            expect(json).to.be.equal(auth0User);
         });
     });
-*/
+
 });
 
 

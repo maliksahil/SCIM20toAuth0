@@ -1,0 +1,16 @@
+{ 
+  "connection": "google-oauth2",
+  "email": "testuser@testdomain.com",
+  "username": "testuser@testdomain.com",
+  "password": "my-password",
+  "phone_number": "+18155358448",
+  "phone_verified": true,
+  "email_verified": true,
+  "verify_email": true,
+  "app_metadata": { "role": "Developer", "level": "Level-2" },
+  "user_metadata": 
+   { "question": "What is your Dog's name?",
+     "answer": "Firulais",
+     "children": [ "Girl Name 1", "Boy Name 1" ] 
+   } 
+ }
