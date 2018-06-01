@@ -1,0 +1,85 @@
+  {
+    "schemas": [
+      "urn:ietf:params:scim:schemas:core:2.0:User",
+      "urn:ietf:params:scim:schemas:extension:auth0:2.0:User"
+    ],
+    "id": "auth0|id",
+    "externalId": "testuser@testdomain.com",
+    "userName": "testuser@testdomain.com",
+    "displayName": "Leandro Pelorosso",
+    "nickName": "leandro.pelorosso",
+    "locale": "en",
+    "name": {
+          "familyName": "Pelorosso",
+          "formatted": "Leandro Pelorosso",
+          "givenName": "Leandro"
+    },
+    "emails": [
+      {
+        "value": "testuser@testdomain.com",
+        "primary": true
+      }
+    ],
+    "photos": [
+      {
+        "value": "https://picture",
+        "type": "photo"
+      }
+    ],
+    "phoneNumbers": [
+      {
+        "value": "+18155358448"
+      }
+    ],
+    "meta": {
+      "resourceType": "User",
+      "created": "2018-04-11T18:16:44.429Z",
+      "lastModified": "2018-06-01T18:18:11.977Z"
+    },
+    "urn:ietf:params:scim:schemas:extension:auth0:2.0:User": {
+      "emailVerified": true,
+      "appMetadata": [
+        {
+          "type": "role",
+          "value": "Developer"
+        },
+        {
+          "type": "level",
+          "value": "Level-2"
+        }
+      ],
+      "blocked": false,
+      "gender": "male",
+      "identities": [
+        {
+          "provider": "google-oauth2",
+          "accessToken": "acces-token",
+          "expiresIn": 3600,
+          "userId": "id",
+          "connection": "google-oauth2",
+          "isSocial": true
+        }
+      ],
+      "lastIp": "73.95.135.98",
+      "lastLogin": "2018-05-07T16:38:55.776Z",
+      "loginsCount": 2,
+      "multifactor": ["guardian"],
+      "userMetadata": [
+        {
+          "type": "question",
+          "value": "What is your Dog's name?"
+        },
+        {
+          "type": "answer",
+          "value": "Firulais"
+        },
+        {
+          "type": "children",
+          "value": ["Girl Name 1", "Boy Name 1"]
+        }
+      ],
+      "phonesVerified": [
+        true
+      ]
+    }
+  }
