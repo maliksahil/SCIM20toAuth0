@@ -48,7 +48,6 @@
           "value": "Level-2"
         }
       ],
-      "blocked": false,
       "gender": "male",
       "identities": [
         {
@@ -81,7 +80,10 @@
       "phonesVerified": [
         true
       ],
-      "verifyEmail": true
+      "blocked": true,
+      "verifyEmail": true,
+      "verifyPhoneNumber": true,
+      "clientId": "clientId"
     },
-    "password": "my-password"
+    "password": "my-password"    
   }

@@ -12,5 +12,9 @@
    { "question": "What is your Dog's name?",
      "answer": "Firulais",
      "children": [ "Girl Name 1", "Boy Name 1" ] 
-   } 
+   },
+   "password": "my-password",
+   "blocked": true,
+   "verify_phone_number": true,
+   "client_id": "clientId"
  }

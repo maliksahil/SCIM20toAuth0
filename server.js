@@ -2,7 +2,8 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var app         = express();
 var morgan      = require('morgan');
-var ApiProxy    = require('./lib/api-proxy');
+var apiProxy    = require('./lib/api-proxy');
+var errors      = require('./lib/error-response');
 
 var Auth0ManagementClient = require('auth0').ManagementClient;
 var auth0Client = new Auth0ManagementClient({
@@ -24,29 +25,41 @@ var router = express.Router();
 
 router.route('/users')
   .post(function (req, res, next) {
-    var scimUser = req.body;    
-    return ApiProxy.createUser(auth0Client, scimUser, (err, newScimUser) => {
-          if (err) return next(err);          
+    var scimUser = req.body;
+    return apiProxy.createUser(auth0Client, scimUser, (err, newScimUser) => {
+          if (err) return next(err);
           res.status(201).json(newScimUser);
     });    
   })
   .get(function (req, res, next) {
-    return ApiProxy.getUsers(auth0Client, (err, scimUsers) => {
-          if (err) return next(err);          
-          res.status(201).json(scimUsers);
+    return apiProxy.getUsers(auth0Client, (err, scimUsers) => {
+          if (err) return next(err);
+          res.status(200).json(scimUsers);
     });
   });
 
-
 router.route('/users/:user_id')
   .get(function (req, res, next) {
-    return ApiProxy.getUser(auth0Client, { id: req.params.user_id }, (err, scimUser) => {
+    return apiProxy.getUser(auth0Client, { id: req.params.user_id }, (err, scimUser) => {
       if (err) return next(err);
-      if (!scimUser) return res.send(404);
-      res.status(201).json(scimUser);
+      res.status(200).json(scimUser);
     });    
-  });
+  })
 
+  .patch(function (req, res, next) {
+    var scimUser = req.body;
+    return apiProxy.updateUser(auth0Client, { id: req.params.user_id }, scimUser, (err, editedScimUser) => {
+      if (err) return next(err);
+      res.status(200).json(editedScimUser);
+    });
+  })
+
+  .delete(function (req, res, next) {
+    return apiProxy.deleteUser(auth0Client, { id: req.params.user_id }, (err) => {
+      if (err) return next(err); // TODO: If user does not exists, it should return 404 according to the SCIM specification, but auth0 API does not!
+      res.sendStatus(204); // 204:No-Content
+    });
+  });
 
 // TODO: authenticate requests
 //app.all('*', requireAuthentication);
@@ -54,7 +67,7 @@ app.use('/scim', router);
 
 app.use(function (err, req, res, next) {
   var status = err.statusCode || 500;
-  res.status(status).send(err.message);
+  res.status(status).send(errors.wrap(err));
 });
 
 app.listen(port);
