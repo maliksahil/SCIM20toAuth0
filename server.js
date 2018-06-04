@@ -7,11 +7,10 @@ var errors      = require('./lib/error-response');
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
 
-
 var Auth0ManagementClient = require('auth0').ManagementClient;
 var auth0Client = new Auth0ManagementClient({
   domain: 'DOMAIN',
-  token: 'TOKEN HERE'
+  token: 'TOKEN'
 });
 
 // configure app
@@ -88,12 +87,10 @@ app.get('/authorized', function (req, res) {
 
 // End OIDC auth verfication code for API
 
-// TODO: authenticate requests
-//app.all('*', requireAuthentication);
 app.use('/scim', router);
 
 app.use(function (err, req, res, next) {
-  var status = err.statusCode || 500;
+  var status = (err.statusCode >= 100 && err.statusCode < 600 ? err.statusCode : 500) || 500;
   res.status(status).send(errors.wrap(err));
 });
 
