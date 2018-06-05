@@ -4,13 +4,13 @@ var app         = express();
 var morgan      = require('morgan');
 var apiProxy    = require('./lib/api-proxy');
 var errors      = require('./lib/error-response');
-var jwt = require('express-jwt');
-var jwks = require('jwks-rsa');
+var config      = require('./config')
+var auth        = require('./lib/authentication')
 
 var Auth0ManagementClient = require('auth0').ManagementClient;
 var auth0Client = new Auth0ManagementClient({
-  domain: 'DOMAIN',
-  token: 'TOKEN'
+  domain: config.AUTH0_CLIENT_DOMAIN,
+  token: config.AUTH0_MANAGEMENT_API_TOKEN
 });
 
 // configure app
@@ -63,30 +63,7 @@ router.route('/users/:user_id')
     });
   });
 
-// OIDC auth verfication code for API
-// Required setup be done at - https://manage.auth0.com/#/apis/
-// Reference for configuring an API in Auth0 is at - https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
-// The Quick Start code after configuration can be use to replace the function below
-var jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: "https://<tenant>.auth0.com/.well-known/jwks.json"
-  }),
-  audience: '<your API endpoint>',
-  issuer: "https://<tenant>.auth0.com>/",
-  algorithms: ['<Hashing Algorithm selected in your API configuration>'] // ex. ['RS256']
-});
-
-app.use(jwtCheck, router);
-
-app.get('/authorized', function (req, res) {
-  res.send('Secured Resource');
-});
-
-// End OIDC auth verfication code for API
-
+app.use(auth.jwtCheck, router);
 app.use('/scim', router);
 
 app.use(function (err, req, res, next) {
