@@ -1,7 +1,7 @@
 { 
   "connection": "google-oauth2",
   "email": "testuser@testdomain.com",
-  "username": "testuser@testdomain.com",
+  "username": "JohnDoe",
   "password": "my-password",
   "phone_number": "+18155358448",
   "phone_verified": true,

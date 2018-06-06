@@ -4,15 +4,26 @@
   "description": "User Account",
   "attributes": [
     {
-      "name": "userName",
+      "name": "id",
       "type": "string",
       "multiValued": false,
       "description": "Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Each User MUST include a non-empty userName value.  This identifier MUST be unique across the service provider's entire set of Users. REQUIRED.",
       "required": true,
+      "caseExact": true,
+      "mutability": "read",
+      "returned": "always",
+      "uniqueness": "server"
+    },
+    {
+      "name": "userName",
+      "type": "string",
+      "multiValued": false,
+      "description": "Username, typically used by the user to directly authenticate to the service provider. Each User MUST include a non-empty userName value.  This identifier MUST be unique across the service provider's entire set of Users. REQUIRED.",
+      "required": true,
       "caseExact": false,
       "mutability": "readWrite",
       "returned": "default",
-      "uniqueness": "server"
+      "uniqueness": "none"
     },
     {
       "name": "name",
@@ -107,7 +118,7 @@
           "required": false,
           "caseExact": false,
           "mutability": "readWrite",
-          "returned": "default",
+          "returned": "always",
           "uniqueness": "none"
         },
         {
@@ -117,7 +128,7 @@
           "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred mailing address or primary email address.  The primary attribute value 'true' MUST appear no more than once.",
           "required": false,
           "mutability": "readWrite",
-          "returned": "default"
+          "returned": "always"
         }
       ],
       "mutability": "readWrite",
@@ -251,7 +262,7 @@
           "required": false,
           "caseExact": false,
           "mutability": "readWrite",
-          "returned": "default",
+          "returned": "always",
           "uniqueness": "none"
         },
         {
@@ -266,7 +277,7 @@
             "thumbnail"
           ],
           "mutability": "readWrite",
-          "returned": "default",
+          "returned": "always",
           "uniqueness": "none"
         },
         {
@@ -276,7 +287,7 @@
           "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred photo or thumbnail.  The primary attribute value 'true' MUST appear no more than once.",
           "required": false,
           "mutability": "readWrite",
-          "returned": "default"
+          "returned": "always"
         }
       ],
       "mutability": "readWrite",

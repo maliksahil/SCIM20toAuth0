@@ -35,7 +35,7 @@ router.route('/users')
     });    
   })
   .get(function (req, res, next) {
-    return apiProxy.getUsers(auth0Client, (err, scimUsers) => {
+    return apiProxy.getUsers(auth0Client, req.query, (err, scimUsers) => {
           if (err) return next(err);
           res.status(200).json(scimUsers);
     });
@@ -43,7 +43,8 @@ router.route('/users')
 
 router.route('/users/:user_id')
   .get(function (req, res, next) {
-    return apiProxy.getUser(auth0Client, { id: req.params.user_id }, (err, scimUser) => {
+    req.query.user_id = req.params.user_id;
+    return apiProxy.getUser(auth0Client, req.query, (err, scimUser) => {
       if (err) return next(err);
       res.status(200).json(scimUser);
     });    

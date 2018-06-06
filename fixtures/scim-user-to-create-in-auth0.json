@@ -4,16 +4,15 @@
     "urn:ietf:params:scim:schemas:extension:auth0:2.0:User"
   ],
   "id": "auth0|id",
-  "externalId": "testuser@testdomain.com",
-  "userName": "testuser@testdomain.com",
-  "displayName": "Leandro Pelorosso",
-  "nickName": "leandro.pelorosso",
-  "locale": "en",
-  "name": {
-        "familyName": "Pelorosso",
-        "formatted": "Leandro Pelorosso",
-        "givenName": "Leandro"
-  },
+    "userName": "JohnDoe",
+    "displayName": "John Doe",
+    "nickName": "john.doe",
+    "locale": "en",
+    "name": {
+          "familyName": "Doe",
+          "formatted": "John Doe",
+          "givenName": "John"
+    },
   "emails": [
     {
       "value": "testuser@testdomain.com",
@@ -38,7 +37,7 @@
     "created": "2018-04-11T18:16:44.429Z",
     "lastModified": "2018-06-01T18:18:11.977Z"
   },
-  "urn:ietf:params:scim:schemas:extension:auth0:2.0:User": {
+  "urn:auth0:2.0:User": {
     "emailVerified": true,
     "appMetadata": [
       {
