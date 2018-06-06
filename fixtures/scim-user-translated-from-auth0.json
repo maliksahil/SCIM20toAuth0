@@ -23,12 +23,14 @@
     "photos": [
       {
         "value": "https://picture",
-        "type": "photo"
+        "type": "photo",
+        "primary": true
       }
     ],
     "phoneNumbers": [
       {
-        "value": "+18155358448"
+        "value": "+18155358448",
+        "primary": true
       }
     ],
     "meta": {
@@ -48,8 +50,6 @@
           "value": "Level-2"
         }
       ],
-      "blocked": false,
-      "gender": "male",
       "identities": [
         {
           "provider": "google-oauth2",
@@ -80,6 +80,7 @@
       ],
       "phonesVerified": [
         true
-      ]
+      ],
+      "blocked": false
     }
   }

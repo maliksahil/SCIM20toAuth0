@@ -4,8 +4,9 @@ var app         = express();
 var morgan      = require('morgan');
 var apiProxy    = require('./lib/api-proxy');
 var errors      = require('./lib/error-response');
-var config      = require('./config')
-var auth        = require('./lib/authentication')
+var config      = require('./config');
+var auth        = require('./lib/authentication');
+var schemas     = require('./lib/schemas')();
 
 var Auth0ManagementClient = require('auth0').ManagementClient;
 var auth0Client = new Auth0ManagementClient({
@@ -61,6 +62,22 @@ router.route('/users/:user_id')
       if (err) return next(err); // TODO: If user does not exists, it should return 404 according to the SCIM specification, but auth0 API does not!
       res.sendStatus(204); // 204:No-Content
     });
+  });
+
+router.route('/schemas')
+  .get(function (req, res, next) {
+      res.status(200).json(schemas.all());
+  });
+
+router.route('/schemas/:schema_id')
+  .get(function (req, res, next) {
+      // if the required schema exists
+      var schema = schemas.byId(req.params.schema_id);
+      if(schema){
+        res.status(200).json(schema);
+      }else{ // return error indicting the schema is not found
+        res.status(404).send(errors.wrap({message:'Schema not found.', statusCode:404}));
+      }
   });
 
 app.use(auth.jwtCheck, router);
