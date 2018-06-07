@@ -3,19 +3,25 @@ This proejct creates an API that exposes Auth0 management API as a SCIM 2.0 comp
 
 # Setup
 
-Grab a management key token for your Auth0 tenant, and update server.js, specifically the following lines,
+First setup an API in your manage.auth0.com area.
+This will need you to specify an audience/identifier. Note down that value.
 
-```
-var auth0Client = new Auth0ManagementClient({
-  domain: '<tenant>.auth0.com',
-  token: '<token>'
-});
-````
+Grab a management key token for your Auth0 tenant, and update config.js with
+
+1. client domain
+2. management api token
+3. tenant
+4. api audience
+5. hashing algorithm
+
 How do I get a management API token? https://auth0.com/docs/api/management/v2/tokens
+
+Next,
 
 1. Run `npm i`
 2. Run `node server`
-3. Make your requests to `http://localhost:8080/scim/*`, the only method currently implemented is /users and /users:userid, so you can make a call to `http:///localhost:8080/scim/users`
+3. Load the JSON from POSTMAN folder into POSTMAN, ensure that you put the appropriate bearer token. You can grab the bearer token from the "TEST" area of the SCIM API you set up earlier.
+4. Make your requests to `http://localhost:8080/scim/*`, the only method currently implemented is /users and /users:userid, so you can make a call to `http:///localhost:8080/scim/users`
 
 ### Example call
 ```
