@@ -10,7 +10,7 @@ var schemas     = require('./lib/schemas')();
 
 var Auth0ManagementClient = require('auth0').ManagementClient;
 var auth0Client = new Auth0ManagementClient({
-  domain: config.AUTH0_CLIENT_DOMAIN,
+  domain: config.AUTH0_TENANT + ".auth0.com",
   token: config.AUTH0_MANAGEMENT_API_TOKEN
 });
 
