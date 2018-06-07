@@ -1,0 +1,255 @@
+{
+  "id": "urn:ietf:params:scim:schemas:extension:auth0:2.0:User",
+  "name": "Auth0User",
+  "description": "Auth0 User Extension",
+  "attributes": [
+    {
+      "name": "emailVerified",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "True if the email address has been verified.",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "appMetadata",
+      "type": "complex",
+      "multiValued": true,
+      "description": "App Metadata of the Auth0 User",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "A label indicating the attribute's function, for instance, 'role' or 'last_login'.",
+          "required": true,
+          "caseExact": false,          
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "Value of the attribute, for instance: 'administrator' or date of last login.",
+          "required": true,
+          "caseExact": false,          
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "userMetadata",
+      "type": "complex",
+      "multiValued": true,
+      "description": "User Metadata of the Auth0 User.",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "A label indicating the attribute's function, for instance, 'answer to security question'.",
+          "required": true,
+          "caseExact": false,          
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "Value of the attribute",
+          "required": true,
+          "caseExact": false,          
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "identities",
+      "type": "complex",
+      "multiValued": false,
+      "description": "The different user indentities.",
+      "required": true,
+      "subAttributes": [
+        {
+          "name": "provider",
+          "type": "string",
+          "multiValued": false,
+          "description": "The name of the identity provider for this particular user identity. For instance: auth0, google-oauth2.",
+          "required": true,
+          "caseExact": true,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "accessToken",
+          "type": "string",
+          "multiValued": false,
+          "description": "If the identity provider is a social one, the access token may be stored.",
+          "required": false,
+          "caseExact": true,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "expiresIn",
+          "type": "integer",
+          "multiValued": false,
+          "description": "Amounts of minutes the Token expires in.",
+          "required": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "userId",
+          "type": "string",
+          "multiValued": false,
+          "description": "The User Indentifier for this provider.",
+          "required": true,
+          "caseExact": true,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "multiValued": false,
+          "description": "The connection name inside Auth0.",
+          "required": true,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "isSocial",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "Indicates if the connection is a social connection.",
+          "required": true,          
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "lastIp",
+      "type": "string",
+      "multiValued": false,
+      "description": "Last IP address used to login.",
+      "required": false,
+      "caseExact": false,
+      "mutability": "readOnly",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "lastLogin",
+      "type": "dateTime",
+      "multiValued": false,
+      "description": "Date and Time of last login.",
+      "required": false,
+      "mutability": "readOnly",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "loginsCount",
+      "type": "integer",
+      "multiValued": false,
+      "description": "Times the user has logged in.",
+      "required": false,
+      "mutability": "readOnly",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "multifactor",
+      "type": "string",
+      "multiValued": true,
+      "description": "Multifactor Authentication methods.",
+      "required": false,
+      "mutability": "readOnly",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "phonesVerified",
+      "type": "boolean",
+      "multiValued": true,
+      "description": "Array of booleans indicating which phone numbers have been verified. True if the user's phone number is verified, false otherwise. When the user is added to a SMS connection, they will not receive an verification SMS if this is true.",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },  
+    {
+      "name": "blocked",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "Indicates if the user has been blocked or not.",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "verifyEmail",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "If true, the user will receive a verification email after creation, even if created with email_verified set to true. If false, the user will not receive a verification email, even if created with email_verified set to false. If unspecified, defaults to the behavior determined by the value of email_verified.",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "verifyPhoneNumber",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "True if the phone_number change needs to be verified, false otherwise. Only allowed if changing the phone number.",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "clientId",
+      "type": "string",      
+      "multiValued": false,
+      "description": "The Auth0 clientID. Only useful when updating the email.",
+      "required": false,
+      "caseExact": true,
+      "mutability": "writeOnly",
+      "returned": "default",
+      "uniqueness": "none"
+    }
+  ],
+  "meta": {
+    "resourceType": "Schema",
+    "location": "/scim/Schemas/urn:ietf:params:scim:schemas:extension:auth0:2.0:User"
+  }
+}
