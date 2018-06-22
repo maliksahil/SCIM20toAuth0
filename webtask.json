@@ -1,0 +1,40 @@
+{
+  "title": "Auth0 SCIM integration",
+  "name": "SCIM20toAuth0",
+  "version": "1.0.0",
+  "author": "auth0",
+  "useHashName": false,
+  "description": "This extension allows to translate auth0 api to scim standard.",
+  "type": "application",
+  "category": "api",
+  "logoUrl": "",
+  "initialUrlPath": "/",
+  "docsUrl": "",
+  "repository": "",
+  "keywords": [
+    "auth0",
+    "extension"
+  ],
+  "auth0": {
+    "createClient": true,
+    "scopes": ""
+  },
+  "secrets": {
+    "AUTH0_ISSUER_DOMAIN": {
+      "description": "The Auth0 issuer domain",
+      "required": true
+    },
+    "AUTH0_CLIENT_ID": {
+      "description": "Client ID of the application you created in the Auth0 Dashboard",
+      "required": true
+    },
+    "AUTH0_CLIENT_SECRET": {
+      "description": "Client SECRET of the application you created in the Auth0 Dashboard",
+      "required": true
+    },
+    "AUDIENCE": {
+      "description": "The audience of the api you created in the Auth0 Dashboard",
+      "required": true
+    }
+  }
+}
